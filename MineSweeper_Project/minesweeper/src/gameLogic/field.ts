@@ -1,12 +1,6 @@
-import { Cell, Field } from "../Types/gameTypes"
+import { Cell, CellState, Field } from "../Types/gameTypes"
+import { updateNeighours } from "./cellManipulator"
 
-export const CellState: Record<string, Cell> = {
-    empty:0,
-    bomb:9,
-    hidden:10,
-    mark:11,
-    weakMark:12
-}
 
 export const emptyFieldGenerator = (
     size:number,
@@ -30,11 +24,12 @@ export const fieldGenerator = (
             if (cellsWithBombs === 0){
                 return result
             }
-            if(cellsWithBombs/freeCellCount > 0){
+            if(cellsWithBombs/freeCellCount > Math.random()){
                 result[i][j]=CellState.bomb
-                cellsWithBombs-=1
+                updateNeighours([i,j],result)
+                cellsWithBombs--
             }
-            freeCellCount-=1
+            freeCellCount--
         }
     }
 

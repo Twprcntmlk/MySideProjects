@@ -1,4 +1,5 @@
-import { emptyFieldGenerator, fieldGenerator, CellState } from "./field"
+import { emptyFieldGenerator, fieldGenerator} from "./field"
+import {CellState} from "../Types/gameTypes"
 const  { empty, bomb, hidden } = CellState;
 
 describe('Field Generator', ()=>{
@@ -66,17 +67,14 @@ describe('Field Generator', ()=>{
             const field= fieldGenerator(2,.5)
             const flattenMatrix= field.flat()
 
+            console.table(field)
+            console.table(flattenMatrix)
             const bombs = flattenMatrix.filter((cell)=>cell===bomb)
-            const emptyCells = flattenMatrix.filter((cell)=>cell===empty)
+            const emptyCells = flattenMatrix.filter((cell)=>cell!==bomb)
 
             expect(bombs).toHaveLength(2)
             expect(emptyCells).toHaveLength(2)
-            // expect(fieldGenerator(4,.5)).toStrictEqual([
-            //     [bomb,bomb,bomb,bomb],
-            //     [bomb,bomb,bomb,bomb],
-            //     [empty,empty,empty,empty],
-            //     [empty,empty,empty,empty]
-            // ])
+
         })
     })
 })

@@ -1,0 +1,43 @@
+.grid {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  padding: 50px;
+  background-color: #db9b1e;
+}
+
+
+  table {
+    width: 500px;
+    height: 500px;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+  }
+
+  td {
+    width: 5%;
+    height: 5%;
+    border: 1px solid #000;
+    background-color: #f5d99c;
+  }
+
+  td::before {
+    content: '';
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background-color: #000;
+    visibility: hidden;
+  }
+
+  td.stone-black::before {
+    visibility: visible;
+  }
+
+  td.stone-white::before {
+    background-color: #fff;
+    visibility: visible;
+  }
